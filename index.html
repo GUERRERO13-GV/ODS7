@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ODS 7 – Energía Asequible y No Contaminante</title>
+
+<!-- Tipografías -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ===== Reset y variables ===== */
+  :root{
+    --bg: #f4f6f5;
+    --main-green: #FBC412;
+    --accent: #f9e28a;
+    --muted: #6b6f6b;
+    --card: #ffffff;
+    --glass: rgba(255,255,255,0.7);
+    --maxw: 1200px;
+    --main-yellow: #FBC412;
+    --main-yellow-dark: #d9a30f;
+    --accent: #f9e28a;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#112;}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+
+  /* ===== Menu superior moderno (fijo) ===== */
+  .nav {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    max-width: var(--maxw);
+    z-index: 60;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 18px;
+    border-radius:14px;
+    transition: all .28s ease;
+    background: linear-gradient(180deg, rgba(255,255,255,0.54), rgba(255,255,255,0.48));
+    box-shadow: 0 8px 30px rgba(12,18,12,0.08);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(10,10,10,0.04);
+  }
+  .nav.scrolled{
+    top: 8px;
+    padding:8px 14px;
+    background: rgba(255,255,255,0.82);
+    transform: translateX(-50%) translateY(-4px);
+    box-shadow: 0 12px 35px rgba(12,18,12,0.12);
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--main-green),#f9e28a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Playfair Display';font-size:18px;
+    box-shadow: 0 6px 18px rgba(46,125,50,0.18);
+  }
+  .brand .txt{line-height:1}
+  .brand .txt h4{margin:0;font-size:15px;font-weight:700;color:#083523}
+  .brand .txt p{margin:0;font-size:12px;color:var(--muted)}
+
+  .nav .links{display:flex;gap:12px;align-items:center}
+  .nav .links a{padding:10px 14px;border-radius:10px;font-weight:600;color:#123}
+  .nav .links a.cta{
+    background:linear-gradient(90deg,var(--main-green),#f9e28a);color:white;box-shadow:0 6px 18px rgba(46,125,50,0.18);
+  }
+
+  /* ===== Hero (portada) ===== */
+  .hero{
+    min-height:72vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:110px 22px 48px;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.65)), url('images/odsss.jpg');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 8px solid rgba(0,0,0,0.06);
+  }
+  .hero .hero-inner{max-width:var(--maxw);width:100%;display:flex;gap:40px;align-items:center;justify-content:space-between}
+  .hero .left{flex:1;min-width:340px}
+  .hero h1{font-family:'Playfair Display',serif;font-size:44px;margin:0;color:#123;letter-spacing:-0.6px}
+  .hero p.lead{color:#32523f;margin-top:12px;font-size:16px}
+  .hero .hero-buttons{margin-top:22px;display:flex;gap:12px}
+  .btn{
+    display:inline-block;padding:12px 22px;border-radius:12px;font-weight:700;cursor:pointer;border:0;
+    transition:transform .22s ease,box-shadow .22s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.green{background:linear-gradient(90deg,var(--main-green),#f9e28a);color:#fff;box-shadow:0 8px 28px rgba(46,125,50,0.18)}
+  .btn.ghost{background:transparent;border:2px solid rgba(30,90,30,0.14);color:#123}
+
+  .hero .right{width:460px;display:flex;justify-content:center}
+  .hero .right .card-img{
+    width:420px;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(9,18,12,0.12);transform:translateY(0);transition:transform .4s ease;
+    border: 8px solid rgba(255,255,255,0.36);
+  }
+  .hero .right .card-img img{display:block;width:100%;height:auto}
+
+  .hero .right .card-img:hover{transform:translateY(-8px) rotate(-0.2deg) scale(1.01)}
+
+  /* ===== Container y secciones ===== */
+  .container{max-width:var(--maxw);margin:40px auto;padding:0 20px}
+  .section{
+    background:var(--card);
+    border-radius:18px;
+    padding:60px;
+    margin-bottom:36px;
+    box-shadow:0 10px 30px rgba(8,12,10,0.04);
+    overflow:hidden;
+  }
+  .section.alt{background: linear-gradient(180deg,#fcf4e9,#f9e28a)}
+  .section h2{font-family:'Playfair Display';font-size:30px;margin:0 0 18px;color:#103826}
+  .section p, .section li{color:var(--muted);font-size:16px;line-height:1.65}
+  .lead-strong{color:#183f2f;font-weight:700}
+
+  /* columnas flex */
+  .row{display:flex;gap:28px;align-items:flex-start}
+  .col-7{flex:0 0 62%}
+  .col-5{flex:0 0 38%}
+
+  /* bullets elegantes */
+  .bullets{list-style:none;padding:0;margin:0;display:block}
+  .bullets li{
+    display:flex;gap:16px;padding:14px;border-radius:12px;margin-bottom:16px;background:rgba(255,255,255,0.9);
+    align-items:flex-start;border:1px solid rgba(10,10,10,0.02);
+    transition: transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s ease;
+  }
+  .bullets li:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(8,12,10,0.06)}
+  .icon{
+    width:58px;height:58px;border-radius:12px;background:linear-gradient(180deg,rgba(46,125,50,0.12),rgba(46,125,50,0.06));display:flex;align-items:center;justify-content:center;color:var(--main-green);font-weight:700;font-size:20px
+  }
+
+  /* cards horizontales */
+  .cards{display:flex;gap:16px;flex-wrap:wrap}
+  .mini-card{background:var(--card);padding:18px;border-radius:14px;flex:1;min-width:240px;box-shadow:0 8px 22px rgba(10,10,10,0.04)}
+  .mini-card h4{margin:0 0 8px;color:#d9a30f}
+  .mini-card p{margin:0;color:var(--muted)}
+
+  /* opinión */
+  .opinion{display:flex;gap:18px;align-items:center}
+  .avatar{width:84px;height:84px;border-radius:14px;background:linear-gradient(135deg,#cfead2,#b9e9cc);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-weight:700;color:#0f3b27;font-size:22px}
+  .op-text{color:var(--muted)}
+/* ========================= */
+/* SECCIÓN FINAL – CIERRE     */
+/* ========================= */
+
+.final {
+    text-align: center;
+    background: linear-gradient(160deg, #fdedad, #f8e28b);
+    padding: 90px 12%;
+    border-radius: 20px;
+    box-shadow: 0px 10px 28px rgba(0,0,0,0.05);
+}
+
+.final h2 {
+    font-size: 2.4rem;
+    color: black;
+}
+
+/* ----- QR + Código ----- */
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 35px;
+    background: #ffffff60;
+    padding: 22px;
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qr-img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 3px solid #ffbb00;
+}
+
+.code-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.05);
+}
+
+#codeText {
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.copy-btn {
+    background: #ffb100;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.copy-btn:hover {
+    background: #e09a00;
+}
+
+  /* ========================= */
+/* FOOTER CONTACTO PRO       */
+/* ========================= */
+
+footer {
+    padding: 55px 12%;
+    background: #d9a30f;
+    color: black;
+    text-align: left;
+}
+
+footer h3 {
+    color: black;
+    font-size: 1.6rem;
+}
+
+footer .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+}
+
+footer .contact-item img {
+    width: 28px;
+    height: 28px;
+}
+
+footer p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+.code-box, .copy-btn, #codeText {
+    transition: 0.3s ease;
+}
+
+  /* responsive */
+  @media (max-width:980px){
+    .hero{padding-top:100px;padding-bottom:40px}
+    .hero h1{font-size:34px}
+    .hero .right{display:none}
+    .row{flex-direction:column}
+    .col-7,.col-5{flex-basis:100%}
+    .nav{left:12px;right:12px;transform:none}
+  }
+  @media (max-width:560px){
+    .overlay{padding:24px}
+    .hero h1{font-size:26px}
+    .hero p.lead{font-size:14px}
+    .section{padding:28px}
+  }
+
+  /* small helpers for animations (reveal) */
+  .reveal{opacity:0;transform:translateY(18px);transition:all .76s cubic-bezier(.2,.85,.3,1)}
+  .reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="brand">
+    <div class="logo"><img src="images/odssss.jpg" alt="ods7"></div>
+    <div class="txt">
+      <h4>ODS 7</h4>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="#que" class="navlink">¿Qué es?</a>
+    <a href="#objetivo" class="navlink">Objetivos</a>
+    <a href="#metas" class="navlink">Metas</a>
+    <a href="#contribuir" class="navlink">Contribuir</a>
+    <a href="#opinion" class="navlink">Opinión</a>
+    <a href="#contact" class="cta">Contacto</a>
+  </div>
+</nav>
+
+<!-- ===== HERO / PORTADA ===== -->
+<section class="hero" aria-label="Portada del Proyecto">
+  <div class="hero-inner">
+    <div class="left">
+      <h1>ODS 7: Energía Asequible y No Contaminante</h1>
+      <p class="lead">Sostenibilidad Aplicada al Sistema Productivo – ASIR<br><br><span class="lead-strong">Alejandro Guerrero Varo</span></p>
+      <div class="hero-buttons">
+        <button class="btn green" onclick="scrollToId('que')">Descubre más</button>
+        <a class="btn ghost" href="#contact">Contacto</a>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card-img" aria-hidden="true">
+        <img src="images/odssss.jpg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTENIDO ===== -->
+<main class="container">
+
+  <!-- ¿Qué es -->
+  <section id="que" class="section reveal">
+    <div class="row">
+      <div class="col-7">
+        <h2>¿En qué consiste exactamente mi ODS?</h2><br>
+        <p>El <strong>ODS 7</strong> se llama <em>"Energía Asequible y No Contaminante"</em>. Básicamente trata de que todo el mundo tenga acceso a energía, pero que esa energía sea limpia, renovable y barata.</p>
+
+        <p>Hoy en día casi todo funciona con energía: los ordenadores, Internet, los servidores, los centros de datos, las fábricas, las casas y los coches. Por eso es tan importante que esa energía no contamine tanto, porque si no seguimos aumentando el cambio climático.</p>
+
+        <p>Además, una energía accesible y eficiente mejora la calidad de vida, facilita el desarrollo económico y reduce la pobreza energética en zonas vulnerables.</p>
+      </div>
+
+      <div class="col-5">
+        <div class="mini-card">
+          <img src="images/ODS.jpg" alt="Trabajando con portátil" style="border-radius:12px;margin-bottom:12px">
+          <h4>¿Por qué importa?</h4>
+          <p>Porque la manera en que generamos energía afecta al clima, a la salud y a la economía. Pasar a renovables reduce emisiones y abre oportunidades tecnológicas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Objetivo -->
+  <section id="objetivo" class="section alt reveal">
+    <h2>Objetivo principal del ODS 7</h2>
+    <p class="lead-strong">El objetivo del ODS 7 es garantizar que todo el mundo tenga acceso a energía moderna, fiable, sostenible y asequible antes del año 2030.</p>
+    <div style="height:18px"></div>
+    <div class="cards">
+      <div class="mini-card">
+        <h4>Aumento de renovables</h4>
+        <p>Impulsar la producción de energía solar, eólica e hidráulica, reduciendo la dependencia de combustibles fósiles.</p>
+      </div>
+      <div class="mini-card">
+        <h4>Eficiencia energética</h4>
+        <p>Mejorar el uso de la energía en edificios, industria y transporte para obtener los mismos resultados gastando menos.</p>
+      </div>
+      <div class="mini-card">
+        <h4>Acceso universal</h4>
+        <p>Eliminar la pobreza energética garantizando electricidad accesible para zonas remotas y vulnerables.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metas globales -->
+  <section id="metas" class="section reveal">
+    <h2>Metas importantes para 2030</h2>
+
+    <div class="row" style="align-items:flex-start">
+      <div class="col-70">
+        <h3>A nivel mundial</h3>
+        <ul class="bullets">
+          <li><div class="icon">☀</div><div><strong>Más energías renovables</strong><p class="op-text">Aumentar el porcentaje de energías renovables (solar, eólica, hidráulica, etc.) en todo el planeta.</p></div></li>
+          <li><div class="icon">⚡</div><div><strong>Mejorar la eficiencia energética</strong><p class="op-text">Gastar menos energía para realizar las mismas tareas y reducir el despilfarro.</p></div></li>
+          <li><div class="icon">🔌</div><div><strong>Garantizar acceso universal</strong><p class="op-text">Llevar electricidad a millones de personas que aún carecen de ella en zonas pobres.</p></div></li>
+          <li><div class="icon">🔬</div><div><strong>Fomentar investigación</strong><p class="op-text">Aumentar la inversión en tecnologías limpias para que sean más baratas y accesibles.</p></div></li>
+        </ul>
+      </div>
+<br><br><br>
+      <br><div class="col-8">
+        <br><br><br><br><br><br><img src="images/mundial.jpg" alt="Mapa renovable" style="border-radius:12px;box-shadow:0 10px 30px rgba(10,10,10,0.06)">
+      </div>
+    </div>
+  </section>
+
+  <!-- Metas nacionales -->
+  <section class="section alt reveal">
+    <h2>Metas importantes para 2030 – A nivel nacional (España)</h2>
+
+    <ul class="bullets">
+      <li><div class="icon">☀</div><div><strong>Impulso a solar y eólica</strong><p class="op-text">España, con su clima y geografía, puede expandir masivamente estas energías para aprovechar recursos naturales.</p></div></li>
+      <li><div class="icon">🏭</div><div><strong>Cierre de centrales contaminantes</strong><p class="op-text">Abandonar progresivamente las centrales que usan combustibles fósiles, especialmente el carbón.</p></div></li>
+      <li><div class="icon">🏡</div><div><strong>Más autoconsumo</strong><p class="op-text">Fomentar instalaciones de placas solares en hogares y empresas para generar energía propia.</p></div></li>
+      <li><div class="icon">🚗</div><div><strong>Transporte eléctrico</strong><p class="op-text">Promocionar el vehículo eléctrico y mejorar el transporte público para reducir uso de combustibles fósiles.</p></div></li>
+    </ul>
+  </section>
+
+  <!-- Contribuciones -->
+  <section id="contribuir" class="section reveal">
+    <h2>Ideas para contribuir al ODS 7</h2>
+
+    <div class="row">
+      <div class="col-7">
+        <h3>A nivel personal</h3>
+        <ul class="bullets">
+          <li><div class="icon">🔌</div><div><strong>Apagar aparatos</strong><p class="op-text">Desconectar cargadores y apagar dispositivos que no se usan reduce el consumo fantasma.</p></div></li>
+          <li><div class="icon">💻</div><div><strong>Configurar dispositivos</strong><p class="op-text">Optimizar el PC y móvil para ahorro de energía (brillo, suspensión, modos ahorro).</p></div></li>
+          <li><div class="icon">🔋</div><div><strong>Comprar eficientes</strong><p class="op-text">Elegir electrodomésticos clase A o con buena eficiencia energética.</p></div></li>
+          <li><div class="icon">🚍</div><div><strong>Usar transporte público</strong><p class="op-text">Reducir desplazamientos en vehículo privado, compartir coche o usar transporte público.</p></div></li>
+          <li><div class="icon">☀</div><div><strong>Instalar placas solares</strong><p class="op-text">Si tienes la opción en el futuro, instalar paneles en casa reduce facturas y huella.</p></div></li>
+        </ul>
+      </div>
+
+      <div class="col-5">
+        <h3>Desde un puesto importante en un país</h3>
+        <ul class="bullets">
+          <li><div class="icon">💶</div><div><strong>Ayudas para renovables</strong><p class="op-text">Subvenciones públicas específicas para instalaciones domésticas e industriales.</p></div></li>
+          <li><div class="icon">⚡</div><div><strong>Impulsar vehículo eléctrico</strong><p class="op-text">Incentivos, puntos de carga y reducción fiscal para vehículos eléctricos.</p></div></li>
+          <li><div class="icon">🔬</div><div><strong>Invertir en I+D</strong><p class="op-text">Fondos para investigar tecnologías renovables más baratas y eficientes.</p></div></li>
+          <li><div class="icon">🏢</div><div><strong>Leyes y regulaciones</strong><p class="op-text">Exigir a grandes empresas un porcentaje mínimo de energía renovable.</p></div></li>
+          <li><div class="icon">🔧</div><div><strong>Modernizar redes</strong><p class="op-text">Actualización de la red eléctrica para mejorar eficiencia y resiliencia.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opinion -->
+  <section id="opinion" class="section reveal">
+    <h2>Opinión personal</h2>
+    <div class="opinion">
+      <div>
+        <p class="op-text">En mi opinión, el ODS 7 es uno de los más importantes porque sin energía no funciona nada, ni la informática ni la vida diaria. Si la energía que usamos contamina demasiado, al final nos afecta a todos con el cambio climático.</p>
+        <p class="op-text">Los jóvenes, especialmente los que estudiamos informática, debemos ser conscientes de que los centros de datos y servidores consumen muchísima energía; por ello el futuro de la informática debe ir ligado a energía limpia y eficiente.</p>
+        <p class="op-text">Además, los gobiernos deberían moverse más rápido: existen tecnologías renovables muy buenas que no se aplican todo lo que podrían. Si queremos un planeta en condiciones, hay que apostar de verdad por la sostenibilidad energética.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- ========================= -->
+<!-- SECCIÓN FINAL – CIERRE -->
+<!-- ========================= -->
+<section class="final">
+    <h2>¡Gracias!</h2>
+
+    <!-- CONTENEDOR QR + CÓDIGO -->
+    <div class="qr-container">
+        <a href="https://kahoot.it/"><img src="images/qr.png" alt="QR Code" class="qr-img"></a>
+
+        <div class="code-box">
+            <span id="codeText">555263</span>
+            <button class="copy-btn" onclick="copyCode()">Copiar</button>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- FOOTER DE CONTACTO -->
+<!-- ========================= -->
+<footer id="contacto">
+    <h3>Contacto</h3>
+    <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" />
+        <p><strong>Alejandro Guerrero Varo – ASIR</strong></p>
+    </div>
+
+    <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" />
+        <p><strong>aguevar0109@g.educaand.es</strong></p>
+    </div>
+
+    <p style="text-align: right;">Sostenibilidad Aplicada al Sistema Productivo</p>
+    <p style="text-align: right;">ODS 7 – Energía Asequible y No Contaminante</p>
+</footer>
+
+<!-- ===== SCRIPTS (Scroll suave, animaciones reveal) ===== -->
+<script>
+  // Scroll suave a secciones
+  function scrollToId(id){
+    const el = document.getElementById(id);
+    if(!el) return window.scrollTo({top:0,behavior:'smooth'});
+    const top = el.getBoundingClientRect().top + window.scrollY - 88;
+    window.scrollTo({top,behavior:'smooth'});
+  }
+
+  // Menu: cambiar clase al hacer scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal: IntersectionObserver para animar elementos .reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.querySelectorAll('.card-img, .mini-card, .bullets li, .avatar').forEach(el=>io.observe(el));
+
+  // mejorar los enlaces del nav
+  document.querySelectorAll('.navlink').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const href = a.getAttribute('href').replace('#','');
+      scrollToId(href);
+    });
+  });
+function copyCode() {
+    const code = document.getElementById("codeText");
+    const button = document.querySelector(".copy-btn");
+
+    const originalTextColor = code.style.color;
+    const originalBtnBG = button.style.backgroundColor;
+    const originalBtnColor = button.style.color;
+
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(code.textContent);
+
+    // Cambiar estilos (invertir colores)
+    code.style.color = "#ffb100";         // color del botón
+    button.style.backgroundColor = "#fff";  // fondo blanco
+    button.style.color = "#ffb100";         // texto color original del botón
+    button.textContent = "Copiado ✔";
+
+    // Restaurar después de 1.5 s
+    setTimeout(() => {
+        code.style.color = originalTextColor || "black";
+        button.style.backgroundColor = originalBtnBG || "#ffb100";
+        button.style.color = originalBtnColor || "#fff";
+        button.textContent = "Copiar";
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
